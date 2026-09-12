@@ -51,7 +51,6 @@ int main()
     cudaMemcpy(d_result, &result, sizeof(float),
                cudaMemcpyHostToDevice);
 
-    /* 256 threads per block */
     int blocks = (n + THREADS - 1) / THREADS;
 
     printf("Threads per block = %d\n", THREADS);
