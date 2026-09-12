@@ -46,7 +46,6 @@ int main()
     cudaMemcpy(d_a, a, n * sizeof(int), cudaMemcpyHostToDevice);
     cudaMemcpy(d_b, b, n * sizeof(int), cudaMemcpyHostToDevice);
 
-    // Vector Addition
     add<<<1, n>>>(d_a, d_b, d_c, n);
 
     cudaMemcpy(c, d_c, n * sizeof(int), cudaMemcpyDeviceToHost);
@@ -58,7 +57,6 @@ int main()
 
     printf("\n");
 
-    // Dot Product
     cudaMemcpy(d_result, &result, sizeof(int), cudaMemcpyHostToDevice);
 
     dot<<<1, n>>>(d_a, d_b, d_result, n);
