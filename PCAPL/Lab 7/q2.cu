@@ -9,11 +9,21 @@ __global__ void add(int *a, int *b, int *c, int n)
         c[i] = a[i] + b[i];
 }
 
+__global__ void dot(int *a, int *b, int *result, int n)
+{
+    int i = threadIdx.x;
+
+    if (i < n)
+        atomicAdd(result, a[i] * b[i]);
+}
+
 int main()
 {
     int n, i;
     int *a, *b, *c;
-    int *d_a, *d_b, *d_c;
+    int result = 0;
+
+    int *d_a, *d_b, *d_c, *d_result;
 
     printf("Enter N: ");
     scanf("%d", &n);
@@ -31,22 +41,37 @@ int main()
     cudaMalloc((void **)&d_a, n * sizeof(int));
     cudaMalloc((void **)&d_b, n * sizeof(int));
     cudaMalloc((void **)&d_c, n * sizeof(int));
+    cudaMalloc((void **)&d_result, sizeof(int));
 
     cudaMemcpy(d_a, a, n * sizeof(int), cudaMemcpyHostToDevice);
     cudaMemcpy(d_b, b, n * sizeof(int), cudaMemcpyHostToDevice);
 
+    // Vector Addition
     add<<<1, n>>>(d_a, d_b, d_c, n);
 
     cudaMemcpy(c, d_c, n * sizeof(int), cudaMemcpyDeviceToHost);
 
-    printf("Result:\n");
+    printf("\nVector Addition Result:\n");
 
     for (i = 0; i < n; i++)
         printf("%d ", c[i]);
+
     printf("\n");
+
+    // Dot Product
+    cudaMemcpy(d_result, &result, sizeof(int), cudaMemcpyHostToDevice);
+
+    dot<<<1, n>>>(d_a, d_b, d_result, n);
+
+    cudaMemcpy(&result, d_result, sizeof(int),
+               cudaMemcpyDeviceToHost);
+
+    printf("\nDot Product = %d\n", result);
+
     cudaFree(d_a);
     cudaFree(d_b);
     cudaFree(d_c);
+    cudaFree(d_result);
 
     free(a);
     free(b);

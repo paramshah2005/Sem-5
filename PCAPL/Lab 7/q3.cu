@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <cuda.h>
+#include <time.h>
 
 #define THREADS 256
 
@@ -17,7 +18,8 @@ __global__ void distance(float *a, float *b, float *result, int n)
 }
 
 int main()
-{
+{	
+	srand(time(NULL));
     int n, i;
     float *a, *b;
     float result = 0;

@@ -14,7 +14,7 @@ int main()
     {
         cudaGetDeviceProperties(&prop, i);
 
-        printf("\nDevice %d\n", i);
+        printf("Device %d\n", i);
         printf("Device Name: %s\n", prop.name);
         printf("Number of SMs: %d\n", prop.multiProcessorCount);
         printf("Maximum threads per block: %d\n", prop.maxThreadsPerBlock);
