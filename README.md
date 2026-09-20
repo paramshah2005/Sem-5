@@ -23,7 +23,7 @@ This repo hosts Semester 5 coursework: interactive Jupyter Notebooks for labs an
   - MLL/Lab 2/Lab2.ipynb
   - MLL/Lab 2/Week-02-Data_Analysis_and_visualisation_with_Python-v2-aln.pdf
   - MLL/Lab 2/company-sales.csv, company.csv
-- PCAPL/ — another course lab folder (contains Lab 1–3 subfolders)
+- PCAPL/ — Parallel Computer Architecture and Programming lab folder (contains Lab 1–8 subfolders)
 - (possible C source files are present elsewhere in the repo — search for `*.c`)
 
 Note: folder names reflect the current repo layout. Some README.md files inside folders are placeholders.
