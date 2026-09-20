@@ -86,3 +86,5 @@ If you’d like, I can:
 - commit this README to the repository,
 - search the repo for every `.c` file and add one-line descriptions for each file,
 - or expand the per-lab descriptions with short summaries pulled from each notebook.
+
+_Last reviewed: 2026-09-20._
